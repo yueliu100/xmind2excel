@@ -4,7 +4,6 @@
 const fs = require("fs");
 const path = require("path");
 const compressing = require("compressing");
-const { basename } = require("path");
 
 async function getFile(src) {
   if (!path.dirname(src)) {
@@ -22,18 +21,22 @@ async function getFile(src) {
   } else {
     const rs = fs.createReadStream(src);
     debugger;
-    compressing.zip.uncompress(rs, path.dirname(src)+"/"+path.basename(src,".xmind")).then((resolve)=>{
+    return compressing.zip.uncompress(rs, path.dirname(src)+"/"+path.basename(src,".xmind")).then((resolve)=>{
         const success_msg={
             code:2000,
             msg:"解压成功"
         };
         return success_msg
-    }).catch(()=>{
+    }).catch((e)=>{
+      console.log(e)
         const error_msg={
             code:10000,
-            msg:"解析失败"
+            msg:"解压失败"
         }
-        return error
+        return error_msg
     });
   }
 }
+getFile("/Users/szdt00136/Documents/测试点/URS测试点.xmind").then(result=>{
+  console.log(result)
+})

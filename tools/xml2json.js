@@ -13,9 +13,6 @@ async function xml2json(file_url) {
     const data = fs.readFileSync(file_url);
     return await new Promise((resolve, reject) => {
       parser.parseString(data, function (err, result) {
-        console.dir(result);
-        console.log("Done");
-        debugger;
         if (err) reject(err);
         resolve(result);
       });
@@ -30,9 +27,3 @@ async function xml2json(file_url) {
   }
 }
 module.exports=xml2json
-const xml_url = "/Users/szdt00136/Documents/测试点/测试/content.xml";
-xml2json(xml_url).then((result) => {
-  debugger;
-  console.log(result);
-  console.log(result["xmap-content"].sheet);
-});

@@ -3,14 +3,14 @@ const internal_config_value = {
   id: "auto",
 };
 const config = [
-  { key: "A1", value: internal_config_value.id },
-  { key: "B2", value: "children1" },
-  { key: "C2", value: "children2" },
-  { key: "D2", value: "children3" },
-  { key: "E2", value: internal_config_value.priority },
-  { key: "F2", value: "" },
-  { key: "G2", value: "children4" },
-  { key: "H2", value: "" },
-  { key: "I2", value: "children5" },
+  { key: "A", value: internal_config_value.id },
+  { key: "B", value: "children1" },
+  { key: "C", value: "children2" },
+  { key: "D", value: "children3" },
+  { key: "E", value: internal_config_value.priority },
+  { key: "F", value: "" },
+  { key: "G", value: "children4" },
+  { key: "H", value: "" },
+  { key: "I", value: "children5" },
 ];
 module.exports=config

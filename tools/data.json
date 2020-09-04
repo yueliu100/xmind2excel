@@ -1,0 +1,29 @@
+[{
+    "children": [{
+        "topics": [{
+            "$": {
+                "type": "attached"
+            },
+            "topic": [{
+                "$": {
+                    "type": "attached"
+                },
+                "title": ["注册"],
+                "children": [{
+                    "topics": [{
+                        "$": {
+                            "type": "attached"
+                        },
+                        "topic": [{
+                            "$": {
+                                "type": "attached"
+                            },
+                            "title": ["验证码+密码"],
+                            "children": []
+                        }]
+                    }]
+                }]
+            }]
+        }]
+    }]
+}]

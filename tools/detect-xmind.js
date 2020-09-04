@@ -5,6 +5,11 @@ const xml2json = require("./xml2json");
 const template_map_config = require("./template-map-config");
 
 async function detectXmind(xmindFile) {
+ xml2json(xmindFile).then((result) => {
+  debugger;
+  console.log(result);
+  console.log(result["xmap-content"].sheet);
+});
   const xmlJson = await xml2json(xmindFile);
   console.log(xmlJson["xmap-content"].sheet);
   const pods = xmlJson["xmap-content"].sheet[0].topic;

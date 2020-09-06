@@ -19,12 +19,11 @@ async function detectXmind(xmindFile) {
   return deepSearchKeyValue;
 }
 
-function jsonParser(json) {
-  let count=0
+function jsonParser(json,grade) {
   for (let key in json) {
     if (key === "topic") {
       debugger;
-      count += 1;
+      grade += 1;
       if (maxCount < count) {
         debugger
         maxCount = count;

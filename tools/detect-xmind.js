@@ -4,48 +4,51 @@ const fs = require("fs");
 const xml2json = require("./xml2json");
 const template_map_config = require("./template-map-config");
 
-async function detectXmind(xmindFile) {
- xml2json(xmindFile).then((result) => {
-  debugger;
-  console.log(result);
-  console.log(result["xmap-content"].sheet);
-});
-  const xmlJson = await xml2json(xmindFile);
-  console.log(xmlJson["xmap-content"].sheet);
-  const pods = xmlJson["xmap-content"].sheet[0].topic;
-  debugger;
-  let maxCount = 0;
-  jsonParser(pods)
-  return deepSearchKeyValue;
+let titles = [];
+let grades = [];
+async function getTitles(xmindFile) {
+  xml2json(xmindFile).then((result) => {
+    if (!result.code) {
+      const pods = result["xmap-content"].sheet[0].topic;
+      pods.forEach((item) => {
+        recursion(item.children, 0);
+      });
+    }
+  });
 }
 
-function jsonParser(json,grade) {
-  for (let key in json) {
-    if (key === "topic") {
+function recursion(list, grade) {
+  list.forEach((child) => {
+    if (Array.isArray(child.topics) && child.topics.length !== 0) {
       debugger;
-      grade += 1;
-      if (maxCount < count) {
-        debugger
-        maxCount = count;
-      }
+      child.topics.forEach((child_topic) => {
+        if (
+          Array.isArray(child_topic.topic) &&
+          child_topic.topic.length !== 0
+        ) {
+          child_topic.topic.forEach((topic_item_title) => {
+            if (topic_item_title.title && !topic_item_title.children) {
+              debugger;
+              titles[grade] = topic_item_title.title;
+              grades.push(grade);
+              debugger;
+            } else {
+              debugger;
+              titles[grade] = topic_item_title.title;
+              debugger;
+              grade += 1;
+              // console.log(grade);
+              debugger;
+              recursion(topic_item_title.children, grade);
+            }
+          });
+        }
+      });
     }
-    const element = json[key];
-    if (
-      (element.length !== 0 && typeof element === "object") ||
-      typeof element === "object"
-    ) {
-      jsonParser(element);
-      count++;
-    } else {
-      console.log("----eles -->  " + key + ":" + element + " ");
-    }
-  }
-  debugger;
+  });
 }
-
 const xmind_file = "/Users/szdt00136/Documents/测试点/测试/content.xml";
 detectXmind(xmind_file).then((result) => {
-  debugger;
-  console.log(maxCount);
-  debugger;
+  console.log(titles)
+  console.log(grades)
 });

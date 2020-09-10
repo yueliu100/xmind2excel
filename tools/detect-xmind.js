@@ -11,33 +11,38 @@ async function getTitles(xmindFile) {
     if (!result.code) {
       const pods = result["xmap-content"].sheet[0].topic;
       pods.forEach((item) => {
+        debugger;
+        console.log(JSON.stringify(item.children));
+        debugger;
         recursion(item.children, 0);
+        debugger;
       });
     }
   });
 }
 
 function recursion(list, grade) {
+  debugger
   list.forEach((child) => {
     if (Array.isArray(child.topics) && child.topics.length !== 0) {
       debugger;
       child.topics.forEach((child_topic) => {
-        debugger
+        debugger;
         if (
           Array.isArray(child_topic.topic) &&
           child_topic.topic.length !== 0
         ) {
-          debugger
+          debugger;
           child_topic.topic.forEach((topic_item_title) => {
-            debugger
+            debugger;
             if (topic_item_title.title && !topic_item_title.children) {
               debugger;
-              titles.push(topic_item_title.title);
+              titles.push({ grade, title: topic_item_title.title });
               grades.push(grade);
               debugger;
             } else {
               debugger;
-              titles.push( topic_item_title.title);
+              titles.push({ grade, title: topic_item_title.title });
               debugger;
               grade += 1;
               // console.log(grade);

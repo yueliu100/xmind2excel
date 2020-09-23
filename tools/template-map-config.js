@@ -2,15 +2,14 @@ const internal_config_value = {
   priority: "priority",
   id: "id",
 };
+//grade 从0开始配置
 const config = [
   { key: "A", value: internal_config_value.id },
-  { key: "B", value: "", grade: 1 },
-  { key: "C", value: "", grade: 2 },
-  { key: "D", value: "", grade: 3 },
+  { key: "B", value: "", grade: 0 },
+  { key: "C", value: "", grade: 1 },
+  { key: "D", value: "", grade: 2 },
   { key: "E", value: internal_config_value.priority },
-  { key: "F", value: "", grade: 4 },
-  { key: "G", value: "", grade: 5 },
-  { key: "H", value: "", grade: 7 },
-  { key: "I", value: "", grade: 6 },
+  { key: "G", value: "", grade: 3 },
+  { key: "I", value: "", grade: 4 },
 ];
 module.exports = config;

@@ -9,14 +9,16 @@ let grades = [];
  * @param {*} type 解析类型，1-xmind8解析来的json，0-xmindzen解压的json
  */
 async function getTitles(json, type) {
+  let road = 0;
   if (type === 1) {
     const pods = json["xmap-content"].sheet[0].topic;
     pods.forEach((item) => {
-      recursion(item.children, 0);
+      debugger
+      recursion(item.children, 0, road);
     });
   } else if (type === 0) {
     const pods = json[0].rootTopic;
-    recursionXmindZen(pods, 0);
+    recursionXmindZen(pods, 0, road);
   }
   return {
     titles,
@@ -45,7 +47,7 @@ function recursionXmindZen(json, grade) {
  * @param {*} list 递归的数组
  * @param {*} grade 层级
  */
-function recursion(list, grade) {
+function recursion(list, grade, road) {
   debugger;
   list.forEach((child) => {
     if (Array.isArray(child.topics) && child.topics.length !== 0) {
@@ -56,11 +58,20 @@ function recursion(list, grade) {
         ) {
           child_topic.topic.forEach((topic_item_title) => {
             if (topic_item_title.title && !topic_item_title.children) {
-              titles.push({ grade, title: topic_item_title.title[0] });
+              debugger
+              titles.push({
+                grade,
+                title: topic_item_title.title[0],
+                road: road.toString(),
+              });
               grades.push(grade);
             } else {
-              titles.push({ grade, title: topic_item_title.title[0] });
-              recursion(topic_item_title.children, grade + 1);
+              debugger
+              titles.push({
+                grade,
+                title: topic_item_title.title[0],
+              });
+              recursion(topic_item_title.children, grade + 1, road.toString()+"-"+(grade+1).toString());
             }
           });
         }

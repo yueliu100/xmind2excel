@@ -31,10 +31,14 @@ async function exchangeData(xmindFile, excelUrl) {
         const xmlJsonData=await xml2json(unzip_dir+"/content.xml")
         //xml转成json
         if(xmlJsonData.code==undefined){
-            //构造写入Excel的rows
+            //TODO 构造写入Excel的rows
             const titles = await detectXmind(xmlJsonData,1);
             if (!titles.code) {
-              return titles;
+              // titles.forEach(element=>{
+                
+              // })
+              debugger
+              return titles
             }
         }
     } else {
